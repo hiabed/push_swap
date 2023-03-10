@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/10 22:25:23 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/10 23:29:19 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void sort_chunk(t_stack **stack_a, t_stack **stack_b)
     t_stack *current = *stack_a;
     int stack_size = ft_lstsize(current);
     int *sorted_arr = stack_to_sorted_array(current);
-    int offset = 10;
+    int offset = ft_lstsize(current) / (ft_lstsize(current) / 2);
 //    int i ;
 //    i= 20;
 	int range;
@@ -193,7 +193,17 @@ void sort_chunk(t_stack **stack_a, t_stack **stack_b)
         while (range <= chunk_end - chunk_start)
         {
             if (current->data >= sorted_arr[chunk_start] && current->data <= sorted_arr[chunk_end])
-                pb(&current, stack_b);       //push to top;
+			{
+				if(current->data >= ft_lstsize(current))
+                	pb(&current, stack_b);       //push to top;
+				else if(current->data < ft_lstsize(current))
+				{
+					pb(&current, stack_b);
+					if((*stack_b)->next)
+						rb(&current);
+				}
+				return;
+			}
             else
 			{
                 ra(&current);
@@ -214,6 +224,19 @@ void sort_chunk(t_stack **stack_a, t_stack **stack_b)
     }
     free(sorted_arr);
 }
+
+// void sort_chunk(t_stack **stack_a, t_stack stack_b)
+// {
+// 	int stack_size = ft_lstsize(stack_a);
+//     int *sorted_arr = stack_to_sorted_array(stack_a);
+// 	int offset = 10;
+// 	int range;
+//     int chunk_start = (stack_size / 2 - 1) - offset;
+// 	int chunk_end = (stack_size / 2 - 1) + offset;
+	
+
+
+// }
 
 // void	sort_chunk(t_stack **stack_a, t_stack **stack_b)
 // {
