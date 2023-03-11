@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/11 22:36:21 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/11 22:48:41 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,21 +160,21 @@ int	*stack_to_sorted_array(t_stack *head)
 	return (sortedArr);
 }
 
-// int	ft_range(int *arr, int start, int end, int content)
-// {
-// 	int	i;
+int	ft_range(int *arr, int start, int end, int content)
+{
+	int	i;
 
-// 	if (!arr)
-// 		return (0);
-// 	i = 0;
-// 	while (i < end - start + 1)
-// 	{
-// 		if (content == arr[start + i])
-// 			return (1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	if (!arr)
+		return (0);
+	i = 0;
+	while (i < end - start + 1)
+	{
+		if (content == arr[start + i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 
 void sort_chunk(t_stack **stack_a, t_stack **stack_b)
@@ -191,14 +191,18 @@ void sort_chunk(t_stack **stack_a, t_stack **stack_b)
     {
         while (range <= chunk_end - chunk_start)
         {
-            if (current->data >= sorted_arr[chunk_start] && current->data <= sorted_arr[chunk_end])
+            if (ft_range(sorted_arr, chunk_start, chunk_end, current->data))
 			{
-				printf(" -- %ld\n",current->data);
-				pb(&current, stack_b);       //push to top;
-				printf("pushed to stack_b: %ld\n", (*stack_b)->data);
-				if(current->data < stack_size / 2 && current->next)
+				if(current->data >= stack_size / 2)
 				{
-					rb(&current);
+					pb(&current, stack_b);       //push to top;
+					printf("pushed to stack_b: %ld\n", (*stack_b)->data);
+				}
+				else if(current->data < stack_size / 2)
+				{
+					pb(&current, stack_b);
+					if(current->next)
+						rb(&current);
 					// printf("pushed to stack_b: %ld\n", (*stack_b)->data);
 				}
 				range++;
