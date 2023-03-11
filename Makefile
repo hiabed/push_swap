@@ -6,7 +6,7 @@ OBJ = ${CFILES:.c=.o}
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
 all : ${NAME}
 

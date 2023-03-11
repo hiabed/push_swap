@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:17:16 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/09 18:34:53 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:38:11 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void print_stack(t_stack *head)
 	if(head == NULL)
 		return;
     while (head) {
-        printf("%ld ", head->data);
+        printf("%ld \n", head->data);
         head = head->next;
     }
     printf("\n");

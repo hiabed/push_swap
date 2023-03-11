@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/10 23:29:19 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:55:19 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,48 +181,55 @@ void sort_chunk(t_stack **stack_a, t_stack **stack_b)
     t_stack *current = *stack_a;
     int stack_size = ft_lstsize(current);
     int *sorted_arr = stack_to_sorted_array(current);
-    int offset = ft_lstsize(current) / (ft_lstsize(current) / 2);
-//    int i ;
-//    i= 20;
+    int offset = 2;
 	int range;
     int chunk_start = (stack_size / 2 - 1) - offset;
     int chunk_end = (stack_size / 2 - 1) + offset;
-	range = chunk_start;
-    while (*stack_a)
+	range = 0;
+    while (current)
     {
-        while (range <= chunk_end - chunk_start)
+        while (range <= chunk_end - chunk_start && current)
         {
             if (current->data >= sorted_arr[chunk_start] && current->data <= sorted_arr[chunk_end])
 			{
-				if(current->data >= ft_lstsize(current))
+				if(current->data >=	stack_size / 2)
+				{
                 	pb(&current, stack_b);       //push to top;
-				else if(current->data < ft_lstsize(current))
+					printf("pushed to stack_b: %ld\n", (*stack_b)->data);
+				}
+				else if(current->data < stack_size / 2)
 				{
 					pb(&current, stack_b);
 					if((*stack_b)->next)
 						rb(&current);
+					printf("pushed to stack_b: %ld\n", (*stack_b)->data);
 				}
-				return;
+				range++;
 			}
             else
 			{
-                ra(&current);
-				printf("ssss%d\n",chunk_start);
-				printf("eeee%d\n",chunk_end);
+				ra(&current);
+				printf("%ld\n", current->data);
 			}
-			range++;
-		if(range == 100)
-			return;
         }
-        chunk_start -= offset;
-		chunk_end += offset;
+		// printf("stack b: ");
+		
+		// printf("\\\\\\\\\n");
+        chunk_start = chunk_start - offset;
+		chunk_end = chunk_end + offset;
 		if (chunk_start < 0)
 			chunk_start = 0;
 		if (chunk_end > stack_size)
 			chunk_end = stack_size - 1;
+		printf("start: %d\n",chunk_start);
+		printf("end: %d\n",chunk_end);
+		// if(chunk_end == 99)
+		// 	return;
         printf("------------------\n");
     }
     free(sorted_arr);
+	//print_stack(*stack_b);
+	
 }
 
 // void sort_chunk(t_stack **stack_a, t_stack stack_b)
