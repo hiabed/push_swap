@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/11 22:48:41 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:54:39 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	*stack_to_array(t_stack *head)
 	int	*sortedArr;
 	int	i;
 
-	size = ft_lstsize(head) - 1;
+	size = ft_lstsize(head);
 	sortedArr = malloc(sizeof(int) * size);
 	i = 0;
 	while (head != NULL)
@@ -160,143 +160,72 @@ int	*stack_to_sorted_array(t_stack *head)
 	return (sortedArr);
 }
 
-int	ft_range(int *arr, int start, int end, int content)
+void	push_to_b_100(t_stack **a, t_stack **b)
 {
-	int	i;
+	int	stack_size;
+	int	*arr;
+	int	range;
+	int	offset;
+	int	end;
+	int	start;
 
-	if (!arr)
-		return (0);
-	i = 0;
-	while (i < end - start + 1)
-	{
-		if (content == arr[start + i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-
-void sort_chunk(t_stack **stack_a, t_stack **stack_b)
-{
-    t_stack *current = *stack_a;
-    int stack_size = ft_lstsize(current);
-    int *sorted_arr = stack_to_sorted_array(current);
-	int range;
-    int offset = stack_size / (stack_size / 2);
-    int chunk_end = (stack_size / 2 - 1) + offset;
-    int chunk_start = (stack_size / 2 - 1) - offset;
+	stack_size = ft_lstsize(*a);
+	arr = stack_to_sorted_array(*a);
+	offset = 8;
+	end = (stack_size / 2 - 1) + offset;
+	start = (stack_size / 2 - 1) - offset;
 	range = 0;
-    while (current)
-    {
-        while (range <= chunk_end - chunk_start)
-        {
-            if (ft_range(sorted_arr, chunk_start, chunk_end, current->data))
+	while (*a)
+	{
+		while (range <= end - start)
+		{
+			if ((*a)->data >= arr[start] && (*a)->data <= arr[end])
 			{
-				if(current->data >= stack_size / 2)
+				if ((*a)->data >= stack_size / 2)
+					pb(a, b);
+				else if ((*a)->data < stack_size / 2)
 				{
-					pb(&current, stack_b);       //push to top;
-					printf("pushed to stack_b: %ld\n", (*stack_b)->data);
-				}
-				else if(current->data < stack_size / 2)
-				{
-					pb(&current, stack_b);
-					if(current->next)
-						rb(&current);
-					// printf("pushed to stack_b: %ld\n", (*stack_b)->data);
+					pb(a, b);
+					if ((*b)->next)
+						rb(b);
 				}
 				range++;
 			}
-            else
-			{
-				ra(&current);
-				// printf("%ld\n", current->data);
-			}
-        }
-		// printf("stack b: ");
-		
-		// printf("\\\\\\\\\n");
-        chunk_start = chunk_start - offset;
-		chunk_end = chunk_end + offset;
-		if (chunk_start < 0)
-			chunk_start = 0;
-		if (chunk_end > stack_size)
-			chunk_end = stack_size - 1;
-		printf("start: %d\n",chunk_start);
-		printf("end: %d\n",chunk_end);
-		if(chunk_end == 10)
-			return;
-        printf("------------------\n");
-    }
-    free(sorted_arr);
+			else
+				ra(a);
+		}
+		start = start - offset;
+		end = end + offset;
+		if (start < 0)
+			start = 0;
+		if (end > stack_size)
+			end = stack_size - 1;
+	}
+	free(arr);
 }
 
-// void sort_chunk(t_stack **stack_a, t_stack stack_b)
-// {
-// 	int stack_size = ft_lstsize(stack_a);
-//     int *sorted_arr = stack_to_sorted_array(stack_a);
-// 	int offset = 10;
-// 	int range;
-//     int chunk_start = (stack_size / 2 - 1) - offset;
-// 	int chunk_end = (stack_size / 2 - 1) + offset;
-	
+void	push_to_a_100(t_stack **stack_a, t_stack **stack_b)
+{
+	int	size;
+	int	*sorted_arr;
+	int	i;
 
-
-// }
-
-// void	sort_chunk(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	t_stack	*current;
-// 	int		stack_size;
-// 	int		*sorted_arr;
-// 	int		chunk_start;
-// 	int		chunk_end;
-// 	int		offset;
-// 	int		i;
-
-// 	current = *stack_a;
-// 	stack_size = ft_lstsize(*stack_a);
-// 	sorted_arr = stack_to_sorted_array(*stack_a);
-// 	offset = 4;
-// 	i = 0;
-// 	while (current)
-// 	{
-// 		chunk_start = (stack_size / 2) - offset;
-// 		chunk_end = (stack_size / 2) + offset;
-// 		while (i < stack_size && *stack_a)
-// 		{
-// 			if ((*stack_a)->data >= sorted_arr[chunk_start]
-// 				&& (*stack_a)->data <= sorted_arr[chunk_end])
-// 			{
-// 				if (i >= stack_size / 2)
-// 					pb(stack_a, stack_b);
-// 				else
-// 				{
-// 					pb(stack_a, stack_b);
-// 					rb(stack_b);
-// 				}
-// 			}
-// 			else
-// 				ra(stack_a);
-// 			i++;
-// 		}
-// 		offset = offset + 2;
-// 		printf("------------------");
-// 		current = current->next;
-// 	}
-// 	free(sorted_arr);
-// }
-
-// void	sort_hundred(t_stack **head_a, t_stack **head_b)
-// {
-// 	int	mid;
-// 	int	offset;
-// 	int	start;
-// 	int	end;
-
-// 	mid = (ft_lstsize(&head_a) / 2) - 1;
-// 	offset = (ft_lstsize(&head_a) / (ft_lstsize(&head_a) / 2));
-// 	start = mid - offsets;
-// 	end = mid + offset;
-
-// }
+	push_to_b_100(stack_a, stack_b);
+	size = ft_lstsize(*stack_b);
+	sorted_arr = stack_to_sorted_array(*stack_b);
+	i = size - 1;
+	while (*stack_b)
+	{
+		if ((*stack_b)->data == sorted_arr[i])
+		{
+			pa(stack_a, stack_b);
+			i--;
+		}
+		else if ((*stack_b)->next->data == sorted_arr[i])
+			sb(stack_b);
+		else if ((*stack_b)->data != sorted_arr[i] &&
+					(*stack_b)->next->data != sorted_arr[i])
+			rb(stack_b);
+	}
+	free(sorted_arr);
+}

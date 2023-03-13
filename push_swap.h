@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:30:34 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/08 21:33:47 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:13:15 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ void				sort_three_numbers(t_stack **head);
 void				sort_five(t_stack **head_a, t_stack **head_b);
 int					find_min_index(t_stack *stack);
 int					ft_lstsize(t_stack *lst);
-// void				sort_hundred(t_stack **head_a, t_stack **head_b);
+int					*stack_to_array(t_stack *head);
 int					*stack_to_sorted_array(t_stack *head);
-void				sort_chunk(t_stack **stack_a, t_stack **stack_b);
+void				push_to_b_100(t_stack **a, t_stack **b);
+void				push_to_a_100(t_stack **stack_a, t_stack **stack_b);
 void				print_stack(t_stack *head);
 
 #endif

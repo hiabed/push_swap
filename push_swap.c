@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:17:16 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/11 17:38:11 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/13 21:40:15 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	str_is_num(char *s)
 	i = 0;
 	if (ft_atoi(s) > INT_MAX)
 		return (0);
-	if (s[i] == '-' || s[i] == '+')
+	if ((s[i] == '-' || s[i] == '+') && ft_strlen(s) > 1)
 		i++;
 	while (s[i])
 	{
@@ -74,18 +74,27 @@ void print_stack(t_stack *head)
         printf("%ld \n", head->data);
         head = head->next;
     }
-    printf("\n");
+}
+
+t_stack	*ft_lstnew(long content)
+{
+	t_stack	*head;
+
+	head = malloc(sizeof(t_stack));
+	if (!head)
+		return (NULL);
+	head->data = content;
+	head->next = NULL;
+	return (head);
 }
 
 int	main(int ac, char *av[])
 {
 	t_stack	*head;
-	t_stack	*newnode;
 	t_stack *b = NULL;
 	char	**s;
 	int		i;
 	int		j;
-
 	head = NULL;
 	i = 1;
 	if (ac < 2)
@@ -104,17 +113,13 @@ int	main(int ac, char *av[])
 			j = 0;
 			while (s && s[j])
 			{
-				if (!str_is_num(s[j]))
+				if (!str_is_num(s[j]) && !ft_atoi(s[j]))
 				{
 					write(1, "Error\n", 6);
 					write(2, "Please enter only numbers less than max int\n", 44);
 					exit(1);
 				}
-				newnode = malloc(sizeof(t_stack));
-				newnode->data = ft_atoi(s[j]);
-				newnode->next = NULL;
-				// add the new node to the list
-				ft_lstadd_back(&head, newnode);
+				ft_lstadd_back(&head, ft_lstnew(ft_atoi(s[j])));
 				j++;
 			}
 			i++;
@@ -125,34 +130,16 @@ int	main(int ac, char *av[])
 			write(2, "There is a double in the list\n", 30);
 			exit(1);
 		}
-
-		// //sort 2 testing;
-		// printf("Before sort_three_numbers() function:      ");
-		// print_stack(head);
-		// sort_two_numbers(&head);
-		// printf("After  sort_three_numbers() function:      ");
-		// print_stack(head);
-		
-		//sort 3 testing;
-		// printf("Before sort_three_numbers() function:      ");
-		// print_stack(head);
-		// sort_three_numbers(&head);
-		// printf("After  sort_three_numbers() function:      ");
-		// print_stack(head);
-		// print_stack(head);
-		// sort_five(&head, &b);
-		// print_stack(head);
-		// int i = 0;
-		// int size = ft_lstsize(head);
-		// while(i < size)
-		// printf("%d, ", stack_to_sorted_array(head)[i++]);
-
-		sort_chunk(&head, &b);
-		printf("stack b is: \n");
-		print_stack(b);
-		// printf("\n");
-		// printf("stack a is: ");
-		// print_stack(head);
+		if(ac <= 2)
+			exit(EXIT_SUCCESS);
+		if(ac == 3)
+			sort_two_numbers(&head);
+		if(ac == 4)
+			sort_three_numbers(&head);
+		if(ac >= 5)
+			sort_five(&head, &b);
+		if(ac >= 101 && ac <= 500)
+			push_to_a_100(&head, &b);
 	}
 }
 
