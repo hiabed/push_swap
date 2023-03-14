@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:17:16 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/13 21:40:15 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:24:36 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,15 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	ptr->next = new;
 }
 // Print the elements of the stack
-void print_stack(t_stack *head)
+void	print_stack(t_stack *head)
 {
-	if(head == NULL)
-		return;
-    while (head) {
-        printf("%ld \n", head->data);
-        head = head->next;
-    }
+	if (head == NULL)
+		return ;
+	while (head)
+	{
+		printf("%ld \n", head->data);
+		head = head->next;
+	}
 }
 
 t_stack	*ft_lstnew(long content)
@@ -91,10 +92,12 @@ t_stack	*ft_lstnew(long content)
 int	main(int ac, char *av[])
 {
 	t_stack	*head;
-	t_stack *b = NULL;
+	t_stack	*b;
 	char	**s;
 	int		i;
 	int		j;
+
+	b = NULL;
 	head = NULL;
 	i = 1;
 	if (ac < 2)
@@ -116,7 +119,8 @@ int	main(int ac, char *av[])
 				if (!str_is_num(s[j]) && !ft_atoi(s[j]))
 				{
 					write(1, "Error\n", 6);
-					write(2, "Please enter only numbers less than max int\n", 44);
+					write(2, "Please enter only numbers less than max int\n",
+							44);
 					exit(1);
 				}
 				ft_lstadd_back(&head, ft_lstnew(ft_atoi(s[j])));
@@ -130,23 +134,18 @@ int	main(int ac, char *av[])
 			write(2, "There is a double in the list\n", 30);
 			exit(1);
 		}
-		if(ac <= 2)
+		if (ft_lstsize(head) <= 1)
 			exit(EXIT_SUCCESS);
-		if(ac == 3)
+		if (ft_lstsize(head) == 2)
 			sort_two_numbers(&head);
-		if(ac == 4)
+		if (ft_lstsize(head) == 3)
 			sort_three_numbers(&head);
-		if(ac >= 5)
+		if (ft_lstsize(head) >= 4)
 			sort_five(&head, &b);
-		if(ac >= 101 && ac <= 500)
+		if (ft_lstsize(head) >= 100 && ft_lstsize(head) < 500)
+		{
 			push_to_a_100(&head, &b);
+			print_stack(head);
+		}
 	}
 }
-
-
-
-
-
-
-
-

@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/13 21:54:39 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:41:10 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,13 @@ void	push_to_a_100(t_stack **stack_a, t_stack **stack_b)
 	size = ft_lstsize(*stack_b);
 	sorted_arr = stack_to_sorted_array(*stack_b);
 	i = size - 1;
+	while ((*stack_b) && (*stack_b)->data != sorted_arr[i])
+		rb(stack_a);
+	if((*stack_b)->data == sorted_arr[i])
+	{
+		pa(stack_a, stack_b);
+		i--;
+	}
 	while (*stack_b)
 	{
 		if ((*stack_b)->data == sorted_arr[i])
@@ -221,10 +228,7 @@ void	push_to_a_100(t_stack **stack_a, t_stack **stack_b)
 			pa(stack_a, stack_b);
 			i--;
 		}
-		else if ((*stack_b)->next->data == sorted_arr[i])
-			sb(stack_b);
-		else if ((*stack_b)->data != sorted_arr[i] &&
-					(*stack_b)->next->data != sorted_arr[i])
+		else
 			rb(stack_b);
 	}
 	free(sorted_arr);
