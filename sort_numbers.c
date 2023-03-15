@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/14 22:41:10 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:54:58 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,32 +204,79 @@ void	push_to_b_100(t_stack **a, t_stack **b)
 	free(arr);
 }
 
+int	last_node_adress(t_stack **stack_a)
+{
+	int	last;
+
+	while (*stack_a)
+	{
+		last = (*stack_a)->data;
+		(*stack_a) = (*stack_a)->next;
+	}
+	return (last);
+}
+
 void	push_to_a_100(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
 	int	*sorted_arr;
 	int	i;
+	int	down;
+	int	last_a;
+	// int count;
 
 	push_to_b_100(stack_a, stack_b);
+	// count = 0;
+	last_a = last_node_adress(stack_a);
+	down = 0;
 	size = ft_lstsize(*stack_b);
 	sorted_arr = stack_to_sorted_array(*stack_b);
 	i = size - 1;
-	while ((*stack_b) && (*stack_b)->data != sorted_arr[i])
-		rb(stack_a);
-	if((*stack_b)->data == sorted_arr[i])
+	//push the max element;
+	while ((*stack_b)->data != sorted_arr[i])
+	{
+		rb(stack_b);
+		// count++;
+	}
+	if ((*stack_b)->data == sorted_arr[i])
 	{
 		pa(stack_a, stack_b);
 		i--;
 	}
-	while (*stack_b)
-	{
-		if ((*stack_b)->data == sorted_arr[i])
-		{
-			pa(stack_a, stack_b);
-			i--;
-		}
-		else
-			rb(stack_b);
-	}
+	// while((*stack_b) && count != 0)
+	// {
+	// 	rrb(stack_b);
+	// 	count--;
+	// }
+	// while (*stack_b)
+	// {
+	// 	if ((*stack_b)->data == sorted_arr[i])
+	// 	{
+	// 		pa(stack_a, stack_b);
+	// 		i--;
+	// 	}
+	// 	else if (down && last_a == sorted_arr[i])
+	// 	{
+	// 		rra(stack_a);
+	// 		down--;
+	// 		i--;
+	// 	}
+	// 	else if (down && last_a < sorted_arr[i])
+	// 	{
+	// 		pa(stack_a, stack_b);
+	// 		if((*stack_a)->data != sorted_arr[i])
+	// 		{
+	// 			ra(stack_a);
+	// 			down++;
+	// 		}
+	// 	}
+	// 	else if((*stack_a)->data != sorted_arr[i])
+	// 	{
+	// 		pa(stack_a, stack_b);
+	// 		ra(stack_a);
+	// 		down++;
+	// 	}
+	// }
 	free(sorted_arr);
 }
+

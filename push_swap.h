@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:30:34 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/13 21:13:15 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:28:38 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int					*stack_to_array(t_stack *head);
 int					*stack_to_sorted_array(t_stack *head);
 void				push_to_b_100(t_stack **a, t_stack **b);
 void				push_to_a_100(t_stack **stack_a, t_stack **stack_b);
+int					last_node_adess(t_stack **stack_a);
 void				print_stack(t_stack *head);
 
 #endif

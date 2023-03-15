@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:17:16 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/14 22:24:36 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:54:43 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	print_stack(t_stack *head)
 		return ;
 	while (head)
 	{
-		printf("%ld \n", head->data);
+		printf("%ld ", head->data);
 		head = head->next;
 	}
 }
@@ -146,6 +146,8 @@ int	main(int ac, char *av[])
 		{
 			push_to_a_100(&head, &b);
 			print_stack(head);
+			printf("\n");
+			print_stack(b);
 		}
 	}
 }
