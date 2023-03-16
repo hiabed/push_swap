@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:17:16 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/16 21:09:38 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/16 21:27:07 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,7 @@ int	main(int ac, char *av[])
 			sort_five(&head, &b);
 		if (ft_lstsize(head) >= 20 && ft_lstsize(head) <= 100)
 			push_to_a_100(&head, &b);
-		if(ft_lstsize(head) >=500)
-			push_to_a_100(&head, &b);
-
+		if(ft_lstsize(head) > 100)
+			push_to_a_500(&head, &b);
 	}
 }

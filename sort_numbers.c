@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/16 21:07:18 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/16 21:28:07 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,7 +283,6 @@ void	push_to_a_100(t_stack **stack_a, t_stack **stack_b)
 	int	i;
 	int	down;
 	
-
 	push_to_b_100(stack_a, stack_b);
 	down = 0;
 	size = ft_lstsize(*stack_b);
@@ -334,7 +333,6 @@ void	push_to_a_500(t_stack **stack_a, t_stack **stack_b)
 	int	i;
 	int	down;
 	
-
 	push_to_b_500(stack_a, stack_b);
 	down = 0;
 	size = ft_lstsize(*stack_b);
