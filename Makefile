@@ -1,6 +1,6 @@
 NAME = push_swap
 
-CFILES = push_swap.c instructions.c sort_numbers.c ./libft/ft_split.c ./libft/ft_isdigit.c ./libft/ft_atoi.c ./libft/ft_strncmp.c ./libft/ft_strlen.c
+CFILES = push_swap.c push_and_pop.c rotate_actions.c sort_2_to_5.c push_to_b.c swap_actions.c errors_handler.c final_sort.c helper_for_final_sort.c ./libft/ft_split.c ./libft/ft_isdigit.c ./libft/ft_atoi.c ./libft/ft_strncmp.c ./libft/ft_strlen.c
 
 OBJ = ${CFILES:.c=.o}
 

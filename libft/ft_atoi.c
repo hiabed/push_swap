@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:39:45 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/12 16:43:14 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:57:15 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long	ft_atoi(const char *str)
 		i++;
 	}
 	if (str[i] != '\0')
-		return 0;
+		return (0);
 	return (sign * result);
 }
 
