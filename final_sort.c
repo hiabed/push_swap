@@ -6,12 +6,20 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 23:29:31 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/18 00:42:44 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 00:57:37 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include "push_swap.h"
+
+int	pa_ra_down(t_stack **stack_a, t_stack **stack_b, t_int v)
+{
+	pa(stack_a, stack_b);
+	ra(stack_a);
+	v.down++;
+	return (v.down);
+}
 
 void	conditions(t_stack **stack_a, t_stack **stack_b, int *sorted_arr,
 		t_int v)
@@ -24,17 +32,9 @@ void	conditions(t_stack **stack_a, t_stack **stack_b, int *sorted_arr,
 			v.i--;
 		}
 		else if (v.down == 0 && (*stack_b)->data != sorted_arr[v.i])
-		{
-			pa(stack_a, stack_b);
-			ra(stack_a);
-			v.down++;
-		}
+			v.down = pa_ra_down(stack_a, stack_b, v);
 		else if (v.down && last_node(*stack_a)->data < (*stack_b)->data)
-		{
-			pa(stack_a, stack_b);
-			ra(stack_a);
-			v.down++;
-		}
+			v.down = pa_ra_down(stack_a, stack_b, v);
 		else if (v.down && last_node(*stack_a)->data == sorted_arr[v.i])
 		{
 			rra(stack_a);
