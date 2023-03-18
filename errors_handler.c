@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:32:41 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/18 00:33:57 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:06:11 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	str_is_num(char *s)
 	int	i;
 
 	i = 0;
-	if (ft_atoi(s) > INT_MAX)
+	if (ft_atoi(s) > INT_MAX || ft_atoi(s) < INT_MIN)
 	{
 		write(1, "Error\n", 6);
-		write(2, "enter only numbers less than max int\n", 37);
+		write(2, "enter only numbers in int range\n", 37);
 		exit(EXIT_FAILURE);
 	}
 	if ((s[i] == '-' || s[i] == '+') && ft_strlen(s) > 1)

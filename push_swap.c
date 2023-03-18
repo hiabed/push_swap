@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:17:16 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/18 00:46:54 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:35:35 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void	fill_all_stack(t_stack **head, int i, char *av[], char **s)
 		{
 			str_is_num(s[j]);
 			ft_lstadd_back(head, ft_lstnew(ft_atoi(s[j])));
+			free(s[j]);
 			j++;
 		}
+		free(s);
 		i++;
 	}
 	check_double(*head);
