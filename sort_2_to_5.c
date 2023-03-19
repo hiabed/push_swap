@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 00:38:22 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/17 23:07:09 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:16:34 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,22 @@ void	sort_three_numbers(t_stack **head)
 
 int	find_min_index(t_stack *stack)
 {
-	int		min;
-	int		index;
-	int		i;
-	t_stack	*current;
+	int	min;
+	int	index;
+	int	i;
 
 	min = stack->data;
 	index = 0;
 	i = 0;
-	current = stack->next;
-	while (current != NULL)
+	while (stack->next != NULL)
 	{
 		i++;
-		if (current->data < min)
+		if (stack->next->data < min)
 		{
-			min = current->data;
+			min = stack->next->data;
 			index = i;
 		}
-		current = current->next;
+		stack = stack->next;
 	}
 	return (index);
 }

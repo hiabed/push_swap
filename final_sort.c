@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 23:29:31 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/18 15:31:02 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:39:59 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	conditions(t_stack **stack_a, t_stack **stack_b, int *sorted_arr,
 		}
 		else if (v.down && last_node(*stack_a)->data > (*stack_b)->data)
 		{
-			if (find_max_index(stack_b) > ft_lstsize(*stack_b) / 2)
+			if (find_max_index(*stack_b) > ft_lstsize(*stack_b) / 2)
 				rrb(stack_b);
 			else
 				rb(stack_b);

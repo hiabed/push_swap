@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:59:00 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/17 16:01:54 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:59:11 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	pop(t_stack **head)
 {
 	t_stack	*temp;
 
-	if (*head == NULL)
-		return ;
 	temp = *head;
 	*head = (*head)->next;
 	free(temp);
@@ -36,20 +34,14 @@ void	pop(t_stack **head)
 
 void	pa(t_stack **a, t_stack **b)
 {
-	if (*b != NULL)
-	{
-		push(a, (*b)->data);
-		pop(b);
-	}
+	push(a, (*b)->data);
+	pop(b);
 	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack **a, t_stack **b)
 {
-	if (*a != NULL)
-	{
-		push(b, (*a)->data);
-		pop(a);
-	}
+	push(b, (*a)->data);
+	pop(a);
 	write(1, "pb\n", 3);
 }

@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 23:33:32 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/18 00:33:26 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:39:48 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,24 @@ t_stack	*last_node(t_stack *stack)
 	return (stack);
 }
 
-int	find_max_index(t_stack **stack)
+int	find_max_index(t_stack *stack)
 {
 	int		max;
 	int		index;
 	int		i;
-	t_stack	*current;
 
-	max = (*stack)->data;
+	max = stack->data;
 	index = 0;
 	i = 0;
-	current = (*stack)->next;
-	while (current != NULL)
+	while (stack->next)
 	{
 		i++;
-		if (current->data > max)
+		if (stack->next->data > max)
 		{
-			max = current->data;
+			max = stack->next->data;
 			index = i;
 		}
-		current = current->next;
+		stack = stack->next;
 	}
 	return (index);
 }

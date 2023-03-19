@@ -6,7 +6,7 @@
 /*   By: mhassani <mhassani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:30:34 by mhassani          #+#    #+#             */
-/*   Updated: 2023/03/18 14:45:16 by mhassani         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:40:23 by mhassani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int					*sort_the_array(t_stack *head);
 void				push_to_b_100(t_stack **a, t_stack **b);
 void				push_to_a_100(t_stack **stack_a, t_stack **stack_b);
 t_stack				*last_node(t_stack *stack);
-int					find_max_index(t_stack **stack);
+int					find_max_index(t_stack *stack);
 void				push_to_b_500(t_stack **a, t_stack **b);
 void				push_to_a_500(t_stack **stack_a, t_stack **stack_b);
 int					check_double(t_stack *head);
